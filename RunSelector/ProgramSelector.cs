@@ -1,6 +1,6 @@
 // vscode では，⌘ return で実行． [dotnet run]が呼び出される．（tasks.jsonを書き換えた）
 // ⌘ delete で中止．
-// （Visual Studioでも ⌘ return でデバッグ実行）
+
 using System;
 using System.Linq;
 
@@ -21,6 +21,9 @@ public class ProgramSelector
         bool flag = true;
         while (flag)
         {
+            Console.Clear();
+            Console.WriteLine("↑↓で移動，Returnで決定");
+            Console.WriteLine();
             for (int i = 0; i < skillTypes.Length; i++)
             {
                 var text = "";
@@ -30,7 +33,6 @@ public class ProgramSelector
                     text = " " + skillTypes[i].Name;
                 Console.WriteLine(text);
             }
-
             var k = Console.ReadKey().Key;
             switch (k)
             {
@@ -41,13 +43,15 @@ public class ProgramSelector
                     index = Math.Max(index - 1, 0);
                     break;
                 case ConsoleKey.Enter:
-                    Console.WriteLine("「" + skillTypes[index] + "」を実行します……");
+                    Console.WriteLine("\n" + skillTypes[index] + "を実行します……");
                     flag = false;
                     break;
                 default:
                     break;
             }
         }
+        System.Threading.Thread.Sleep(2000);
+        Console.Clear();
         IStartable start = (IStartable) Activator.CreateInstance(skillTypes[index]);
         start.Start();
     }

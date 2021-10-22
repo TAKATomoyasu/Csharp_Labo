@@ -1,7 +1,7 @@
 using System;
 
 
-public class InvertDependency : IStartable
+public class CleanArchitecture : IStartable
 {
     public static Entity.IView view;
     public static Controller.IInputProvider input;
@@ -50,7 +50,7 @@ namespace Controller
 
         public Controller()
         {
-            input = InvertDependency.input;
+            input = CleanArchitecture.input;
             IUsecase u = new GameStarter();
             u.Func();
             GameLoop();
@@ -119,7 +119,7 @@ namespace Usecase
         IView v;
         public void Func()
         {
-            v = InvertDependency.view;
+            v = CleanArchitecture.view;
             v.Show(GameStarter.gameState.currentNum.ToString());
         }
     }
