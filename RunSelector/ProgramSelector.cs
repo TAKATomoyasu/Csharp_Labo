@@ -54,5 +54,11 @@ public class ProgramSelector
         Console.Clear();
         IStartable start = (IStartable) Activator.CreateInstance(skillTypes[index]);
         start.Start();
+
+
+        System.Threading.Thread.Sleep(1000);
+        Console.WriteLine();
+        Console.WriteLine("何かキーを押して選択画面に戻ります。");
+        Console.ReadKey();
     }
 }

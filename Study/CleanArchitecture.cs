@@ -52,7 +52,7 @@ namespace Controller
         {
             input = CleanArchitecture.input;
             IUsecase u = new GameStarter();
-            u.Func();
+            u.Handle();
             GameLoop();
         }
 
@@ -64,16 +64,16 @@ namespace Controller
                 if (phrase == "add")
                 {
                     IUsecase u = new AddNum();
-                    u.Func();
+                    u.Handle();
                     u = new ShowData();
-                    u.Func();
+                    u.Handle();
                 }
                 else if (phrase == "sub")
                 {
                     IUsecase u = new SubtractNum();
-                    u.Func();
+                    u.Handle();
                     u = new ShowData();
-                    u.Func();
+                    u.Handle();
                 }
             }
         }
@@ -85,14 +85,14 @@ namespace Usecase
     using Entity;
     interface IUsecase
     {
-        void Func();
+        void Handle();
     }
 
 
     public class GameStarter : IUsecase
     {
         public static GameState gameState;
-        public void Func()
+        public void Handle()
         {
             gameState = new GameState();
         }
@@ -100,7 +100,7 @@ namespace Usecase
 
     public class AddNum : IUsecase
     {
-        public void Func()
+        public void Handle()
         {
 
             GameStarter.gameState.currentNum += 1;
@@ -108,7 +108,7 @@ namespace Usecase
     }
     public class SubtractNum : IUsecase
     {
-        public void Func()
+        public void Handle()
         {
 
             GameStarter.gameState.currentNum -= 1;
@@ -117,7 +117,7 @@ namespace Usecase
     public class ShowData : IUsecase
     {
         IView v;
-        public void Func()
+        public void Handle()
         {
             v = CleanArchitecture.view;
             v.Show(GameStarter.gameState.currentNum.ToString());

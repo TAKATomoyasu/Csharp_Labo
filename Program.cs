@@ -13,10 +13,6 @@ class Program
         for (int i = 0; i < 100; i++)
         {
             new ProgramSelector();
-            Console.WriteLine();
-            System.Threading.Thread.Sleep(1000);
-            Console.WriteLine("何かキーを押して選択画面に戻ります。");
-            Console.ReadKey();
         }
     }
 }
